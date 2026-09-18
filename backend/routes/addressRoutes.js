@@ -1,0 +1,1 @@
+import express from 'express';import {getAddresses,createAddress,updateAddress,deleteAddress} from '../controllers/addressController.js';import {protect} from '../middleware/authMiddleware.js';const r=express.Router();r.use(protect);r.get('/',getAddresses);r.post('/',createAddress);r.put('/:id',updateAddress);r.delete('/:id',deleteAddress);export default r;

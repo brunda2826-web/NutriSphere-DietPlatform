@@ -1,0 +1,8 @@
+Place your product/category .webp images in this folder using the same
+filenames referenced in backend/seed/seeddatabase.js, e.g.:
+almonds.webp, apple.webp, banana.webp, dates.webp, raisins.webp,
+avacado-juice.webp, watermelon-juice.webp, chia-seeds.webp,
+watermelon-seeds.webp, sunflower-seeds.webp, healthy-milkshake.webp,
+hero-food-bowl.webp, dry-fruits.webp, fruits.webp, juices.webp,
+papaya.webp, pomogranate.webp, mid-morning-box.webp, evening-box.webp,
+nutrisphere-fruit-logo.webp, botanical-bg.webp

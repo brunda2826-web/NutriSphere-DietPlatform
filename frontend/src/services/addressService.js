@@ -1,0 +1,1 @@
+import api from './api.js';const d=r=>r.data.data;export const getAddresses=async()=>d(await api.get('/addresses'));export const createAddress=async b=>d(await api.post('/addresses',b));export const updateAddress=async(id,b)=>d(await api.put(`/addresses/${id}`,b));export const deleteAddress=async id=>d(await api.delete(`/addresses/${id}`));

@@ -1,0 +1,1 @@
+export default function Footer(){return <footer className="border-t border-black/5 mt-16 py-8 text-center text-sm text-ink-soft">© {new Date().getFullYear()} NutriSphere · Fresh food, thoughtfully delivered.</footer>}

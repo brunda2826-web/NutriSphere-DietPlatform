@@ -1,0 +1,1 @@
+import {Link} from 'react-router-dom';export default function Logo(){return <Link to="/" className="flex items-center gap-2 font-serif text-2xl font-bold text-brand-dark"><span className="fruit-logo">🍎</span> NutriSphere</Link>}

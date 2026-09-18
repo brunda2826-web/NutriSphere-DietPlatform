@@ -1,0 +1,1 @@
+import api from './api.js';const d=r=>r.data.data;export const createPaymentOrder=async amount=>d(await api.post('/payments/create-order',{amount}));export const verifyPayment=async body=>d(await api.post('/payments/verify',body));
