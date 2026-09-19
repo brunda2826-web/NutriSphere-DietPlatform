@@ -23,7 +23,7 @@ import OwnerDashboard from "./pages/OwnerDashboard.jsx";
 import OwnerSection from "./pages/OwnerSection.jsx";
 export default function App() {
   return (
-    <HashRouter basename="/NutriSphere-DietPlatform">
+    <HashRouter>
       <AuthProvider> 
         <CartProvider>
           <Toaster position="top-right" />
