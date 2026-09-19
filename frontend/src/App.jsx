@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
@@ -23,8 +23,8 @@ import OwnerDashboard from "./pages/OwnerDashboard.jsx";
 import OwnerSection from "./pages/OwnerSection.jsx";
 export default function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
+    <HashRouter basename="/NutriSphere-DietPlatform">
+      <AuthProvider> 
         <CartProvider>
           <Toaster position="top-right" />
           <Routes>
@@ -148,6 +148,6 @@ export default function App() {
           </Routes>
         </CartProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
