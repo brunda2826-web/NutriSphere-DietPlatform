@@ -35,27 +35,35 @@ export const registerUser = asyncHandler(async (req, res) => {
     });
 });
 export const verifyRegistration = asyncHandler(async (req, res) => {
-  const { userId, emailOtp, smsOtp } = req.body;
-  if (!userId || !emailOtp || !smsOtp) {
+  const { userId, emailOtp } = req.body;
+
+  if (!userId || !emailOtp) {
     res.status(400);
-    throw new Error("Both email and SMS OTPs are required");
+    throw new Error("Email OTP is required");
   }
+
   const user = await User.findById(userId);
+
   if (!user) {
     res.status(404);
     throw new Error("Registration not found");
   }
+
   await verifyOtp(user._id, "email", emailOtp);
-  try {
-    await verifyOtp(user._id, "sms", smsOtp);
-  } catch (e) {
-    res.status(400);
-    throw new Error(e.message);
-  }
+
   user.isVerified = true;
   await user.save();
-  res.json({ success: true, data: { token: generateToken(user._id), user } });
+
+  res.json({
+    success: true,
+    data: {
+      token: generateToken(user._id),
+      user,
+    },
+  });
 });
+
+
 export const resendOtp = asyncHandler(async (req, res) => {
   const user = await User.findById(req.body.userId);
   if (!user) {
@@ -63,7 +71,13 @@ export const resendOtp = asyncHandler(async (req, res) => {
     throw new Error("Registration not found");
   }
   const results = await issueOtp(user);
-  res.json({ success: true, data: { channels: results } });
+  res.json({
+    success: true,
+    data: {
+      channel: "email",
+      message: "New OTP sent to your email",
+    },
+  });
 });
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -76,7 +90,7 @@ export const loginUser = asyncHandler(async (req, res) => {
   }
   if (!user.isVerified) {
     res.status(403);
-    throw new Error("Please verify your email and SMS OTP before signing in.");
+    throw new Error("Please verify your email OTP before signing in.");
   }
   res.json({ success: true, data: { token: generateToken(user._id), user } });
 });

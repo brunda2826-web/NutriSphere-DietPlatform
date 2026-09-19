@@ -4,7 +4,6 @@ import bcrypt from "bcryptjs";
 import OtpVerification from "../models/OtpVerification.js";
 
 import { sendOtpEmail } from "./emailService.js";
-import { sendOtpSms } from "./smsService.js";
 
 import Notification from "../models/Notification.js";
 import User from "../models/User.js";
@@ -25,8 +24,7 @@ export async function issueOtp(user) {
   const cooldown = Number(process.env.OTP_RESEND_SECONDS || 60) * 1000;
 
   const channels = [
-    ["email", user.email],
-    ["sms", user.phone],
+    ["email", user.email]
   ];
 
   const results = [];
@@ -66,12 +64,8 @@ export async function issueOtp(user) {
 
     let sent = false;
 
-    if (channel === "email") {
       sent = await sendOtpEmail(user.email, code);
-    } else {
-      sent = await sendOtpSms(user.phone, code);
-    }
-
+    
     results.push({
       channel,
       sent,

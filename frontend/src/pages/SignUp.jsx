@@ -33,7 +33,7 @@ export default function SignUp() {
         <div className="card p-7">
           <h1 className="font-serif text-3xl font-bold">Create your account</h1>
           <p className="text-sm text-ink-soft mt-2">
-            We verify your email and mobile before activation.
+            We verify your email before activation.
           </p>
           <form onSubmit={submit} className="space-y-4 mt-6">
             {[
